@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <style>
+      .headere{
+        width: 40%;
+        font-size: 30px;
+        color: rgb(60, 179, 113);
+        text-align: center;        
+      }
+      .container{
+        width: 100%;
+        margin-left: 200px;
+      }
+      .inputfield{
+        width: 40%;
+        height: 40px;
+        border-radius: 10px;
+        outline:none;
+        padding-left: 20px;
+      }
+
+      .inputfield, input:focus{
+        background: lightgray;
+      }
+
+      .btne{
+        width: 40%;
+        height: 40px;
+      }
+    </style> 
+    
+ 
+  </head>
+  <title>MR TV</title>
+  <body>
+    
+ 
+
+<div class="row">
+  <div class="col-md-2">
+    
+  </div>
+  <div class="col-md-10">
+    <div class="container">
+      <br/>
+  <header class="headere">Admin Registration</header>        
+    <fieldset>
+       <br/>
+       <input type="text" class="inputfield" name="username" id="username" placeholder="User Name" required autofocus>
+       <br/><br/>
+       <input type="email" class="inputfield" name="email" id="email" placeholder="E-mail" required>
+       <br/><br/>
+       <input type="password" class="inputfield" name="password" id="password" placeholder="Password" required>
+       <br/><br/>
+       <input type="password" class="inputfield" name="confirm-password" id="conpassword" placeholder="Confirm Password" required><br/><br/>
+       <input type="submit" class="btn btne btn-primary" name="submit" onclick="submitregis()" id="submit" value="REGISTER">                 
+    </fieldset>
+</div>
+  </div>
+</div>
+
+
+<script>
+
+function submitregis() {
+  var username =document.getElementById("username").value;
+  var email =document.getElementById("email").value;
+  var password =document.getElementById("password").value;
+  var conpassword =document.getElementById("conpassword").value;
+
+ 
+if(password === conpassword){
+
+
+const data = { username: username, email:email, password:password, conpassword:conpassword};
+
+ 
+
+fetch('/regissubmit', {
+  method: 'POST',  
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify(data),
+})
+.then(response => response.json())
+.then(data => {  
+  // window.history.back()
+})
+.catch((error) => {
+  console.error('Error:', error);
+});
+  document.getElementById("username").value = "";
+  document.getElementById("email").value = "";
+  document.getElementById("password").value = "";
+  document.getElementById("conpassword").value = "";
+  }
+}
+</script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>    
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js" integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>    
+  </body>
+</html>
